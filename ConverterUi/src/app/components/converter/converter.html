@@ -1,0 +1,43 @@
+<div class="converter-container">
+  <h2>Universal Converter</h2>
+
+  <div class="form-group">
+    <label>Conversion Type:</label>
+    <select [(ngModel)]="selectedType" (change)="updateUnits()">
+      <option value="" disabled selected>Select type</option>
+      <option *ngFor="let type of conversionTypes" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+
+  <div *ngIf="fromUnits.length > 0">
+    <div class="form-group">
+      <label>Value:</label>
+      <input type="number" [(ngModel)]="value" placeholder="Enter value" />
+    </div>
+
+    <div class="form-group">
+      <label>From:</label>
+      <select [(ngModel)]="from">
+        <option value="" disabled selected>Select unit</option>
+        <option *ngFor="let unit of fromUnits" [value]="unit">{{ unit }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>To:</label>
+      <select [(ngModel)]="to">
+        <option value="" disabled selected>Select unit</option>
+        <option *ngFor="let unit of toUnits" [value]="unit">{{ unit }}</option>
+      </select>
+    </div>
+
+    <div class="button-group">
+      <button (click)="convert()">Convert</button>
+      <button class="clear-btn" (click)="clear()">Clear</button>
+    </div>
+  </div>
+
+  <div class="output" *ngIf="result">
+    {{ result }}
+  </div>
+</div>
