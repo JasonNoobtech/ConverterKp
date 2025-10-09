@@ -4,6 +4,6 @@ public enum ConversionType {
     TEMPERATURE,
     WEIGHT,
     LENGTH,
-    HEIGHT,
+    CURRENCY,
     SPEED
 }
