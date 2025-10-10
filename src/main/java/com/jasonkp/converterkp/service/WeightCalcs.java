@@ -11,6 +11,10 @@ public class WeightCalcs implements Converter {
             return value;
         }
 
+        if (value <= 0) {
+            throw new RuntimeException("Weight cannot be less than 0");
+        }
+
         double kilograms;
         if (from.equals("Kilograms")) {
             kilograms = value;

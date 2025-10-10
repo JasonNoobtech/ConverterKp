@@ -35,16 +35,6 @@ public class ConversionController {
     public ResponseEntity<?> convert(@RequestBody ConversionRequest request) {
 
         try {
-            // Null request check
-            if (request == null)
-                return ResponseEntity.badRequest().body("Request body is required");
-            // Validation for the correct type
-            if (request.getType() == null)
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing conversion type");
-            if (request.getTo() == null)
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing conversion to");
-            if (request.getFrom() == null)
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing conversion from");
 
             double result;
             // Choose the correct converter
@@ -62,11 +52,8 @@ public class ConversionController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid conversion type");
             }
             return ResponseEntity.ok(result);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Invalid conversion parameters: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Conversion failed: " + e.getMessage());
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 }
