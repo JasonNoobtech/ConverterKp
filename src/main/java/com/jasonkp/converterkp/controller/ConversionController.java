@@ -12,42 +12,43 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ConversionController {
 
-    final TempCalcs tempCalcs;
-    final CurrencyCalcs currencyCalcs;
-    final SpeedCalcs speedCalcs;
-    final WeightCalcs weightCalcs;
-    final LengthCalcs lengthCalcs;
-
-    public ConversionController(TempCalcs tempCalcs,
-                                CurrencyCalcs currencyCalcs,
-                                SpeedCalcs speedCalcs,
-                                WeightCalcs weightCalcs,
-                                LengthCalcs lengthCalcs)
-    {
-        this.tempCalcs = tempCalcs;
-        this.currencyCalcs = currencyCalcs;
-        this.speedCalcs = speedCalcs;
-        this.weightCalcs = weightCalcs;
-        this.lengthCalcs = lengthCalcs;
-    }
-
     @PostMapping("/convert")
     public ResponseEntity<?> convert(@RequestBody ConversionRequest request) {
-
+        
+        // Validate request
+        if (request.getType() == null) {
+            return ResponseEntity.badRequest().body("Missing conversion type");
+        }
+        if (request.getFrom() == null || request.getFrom().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Missing 'from' unit");
+        }
+        if (request.getTo() == null || request.getTo().trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("Missing 'to' unit");
+        }
+        
         try {
-
             double result;
             // Choose the correct converter
             if (request.getType() == ConversionType.TEMPERATURE) {
-                result = tempCalcs.convert(request.getInputValue(), request.getFrom(), request.getTo());
+                TempEnum fromUnit = TempEnum.valueOf(request.getFrom().toUpperCase());
+                TempEnum toUnit = TempEnum.valueOf(request.getTo().toUpperCase());
+                result = fromUnit.convertTo(request.getInputValue(), toUnit);
             } else if (request.getType() == ConversionType.CURRENCY) {
-                result = currencyCalcs.convert(request.getInputValue(), request.getFrom(), request.getTo());
-            } else if (request.getType() == ConversionType.SPEED) {
-                result = speedCalcs.convert(request.getInputValue(), request.getFrom(), request.getTo());
+                CurrencyEnum fromCurrency = CurrencyEnum.fromString(request.getFrom());
+                CurrencyEnum toCurrency = CurrencyEnum.fromString(request.getTo());
+                result = fromCurrency.convertTo(request.getInputValue(), toCurrency);
             } else if (request.getType() == ConversionType.WEIGHT) {
-                result = weightCalcs.convert(request.getInputValue(), request.getFrom(), request.getTo());
-            } else if (request.getType() == ConversionType.LENGTH) {
-                result = lengthCalcs.convert(request.getInputValue(), request.getFrom(), request.getTo());
+                WeightEnum fromUnit = WeightEnum.fromString(request.getFrom());
+                WeightEnum toUnit = WeightEnum.fromString(request.getTo());
+                result = fromUnit.convertTo(request.getInputValue(), toUnit);
+            } else if (request.getType() == ConversionType.DISTANCE) {
+                DistanceEnum fromUnit = DistanceEnum.fromString(request.getFrom());
+                DistanceEnum toUnit = DistanceEnum.fromString(request.getTo());
+                result = fromUnit.convertTo(request.getInputValue(), toUnit);
+            } else if (request.getType() == ConversionType.DIGITAL_STORAGE) {
+                StorageEnum fromUnit = StorageEnum.fromString(request.getFrom());
+                StorageEnum toUnit = StorageEnum.fromString(request.getTo());
+                result = fromUnit.convertTo(request.getInputValue(), toUnit);
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid conversion type");
             }

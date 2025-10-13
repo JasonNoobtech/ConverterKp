@@ -11,7 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./app.css']
 })
 export class App {
-  conversionTypes = ['TEMPERATURE', 'LENGTH', 'WEIGHT', 'CURRENCY', 'SPEED'];
+  conversionTypes = ['TEMPERATURE', 'CURRENCY', 'DIGITAL STORAGE', 'DISTANCE', 'WEIGHT'];
   fromUnits: string[] = [];
   toUnits: string[] = [];
 
@@ -21,24 +21,27 @@ export class App {
   value: number | null = null;
   result = '';
 
-  constructor(private http: HttpClient) {}
-
   updateUnits(): void {
     switch (this.selectedType) {
       case 'TEMPERATURE':
         this.fromUnits = ['Celsius', 'Fahrenheit', 'Kelvin'];
         break;
-      case 'LENGTH':
-        this.fromUnits = ['Meters', 'Feet', 'Inches', 'Centimeters', 'Yards', 'Lightyears'];
+      case 'DISTANCE':
+        this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles', 'Yards', 'Feet', 'Inches', 'Kilometres',
+        'Metres', 'Centimetres', 'Millimetres', 'Nanometres', 'Bananas', 'Football Fields', 'Empire State Buildings', 'Giraffes', 'Double Decker Busses', 'Paperclips', 'Eiffel Towers'];
         break;
       case 'WEIGHT':
-        this.fromUnits = ['Kilograms', 'Pounds', 'Ounces', 'Grams', 'Tons'];
+        this.fromUnits = ['Kilograms', 'Pounds', 'Ounces', 'Grams', 'Tonnes', 'Bananas', 'Paperclips', 'Elephants', 'Blue Whales', 'Feathers', 'Bowling Balls', 'Hamsters',
+          'Smartphones', 'Slices of Pizza'];
+        break;
+      case 'DIGITAL STORAGE':
+        this.fromUnits = ['Bits', 'Kilobits', 'Kibibits', 'Megabits', 'Mebibits', 'Gigabits', 'Gibibits', 'Terabits', 'Tebibits',
+          'Petabits', 'Pebibits', 'Bytes', 'Kilobytes', 'Kibibytes', 'Megabytes', 'Mebibytes', 'Gigabytes', 'Gibibytes', 'Terabytes',
+          'Tebibytes', 'Petabytes', 'Pebibytes'];
         break;
       case 'CURRENCY':
-        this.fromUnits = ['Rand', 'EUR', 'GBP', 'JPY', 'CAD', 'USD'];
-        break;
-      case 'SPEED':
-        this.fromUnits = ['Meters per second', 'Kilometers per hour', 'Miles per hour', 'Knots'];
+        this.fromUnits = ['Rand', 'Pound', 'Yen', 'Euro', 'Yuan', 'Dollar', 'Netherlands Antillean Guilder',
+          'Armenian Dram', 'Somali Shilling', 'Zimbabwean Dollar'];
         break;
       default:
         this.fromUnits = [];
@@ -48,9 +51,11 @@ export class App {
     this.to = '';
   }
 
+  constructor(private http: HttpClient) {}
+
   convert(): void {
     const request = {
-      type: this.selectedType,
+      type: this.selectedType.replace(' ', '_'),
       from: this.from,
       to: this.to,
       inputValue: this.value
@@ -58,8 +63,16 @@ export class App {
 
     this.http.post('http://localhost:8080/api/convert', request, { responseType: 'text' })
       .subscribe({
-        next: (res) => this.result = `Result: ${parseFloat(res).toFixed(2)}`,
-        error: () => this.result = 'Error: Could not convert'
+        next: (res) => this.result = `Result: ${parseFloat(res).toFixed(4)}`,
+        error: (err) => {
+          console.error('Error response:', err);
+          const backendMessage =
+            typeof err.error === 'string'
+              ? err.error
+              : err.error?.message || 'Unknown error from backend';
+
+          this.result = `${backendMessage}`;
+        }
       });
   }
 
