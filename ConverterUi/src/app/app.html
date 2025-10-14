@@ -1,5 +1,5 @@
 <div class="converter-container">
-  <h1>Cosmically Cool Converter 👽</h1>
+  <h1>Cosmically Cool Converter</h1>
 
   <div class="form-group">
     <label>Conversion Type:</label>
@@ -12,7 +12,8 @@
   <div *ngIf="selectedType">
     <div class="form-group">
       <label>Value:</label>
-      <input type="number" [(ngModel)]="value" placeholder="Enter value" />
+      <p class="help-note">Format for text: "two thousand three hundred forty-five"</p>
+      <input [(ngModel)]="value" placeholder="Enter value" />
     </div>
 
     <div class="form-group">

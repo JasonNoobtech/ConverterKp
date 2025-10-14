@@ -28,7 +28,8 @@ export class App {
         break;
       case 'DISTANCE':
         this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles', 'Yards', 'Feet', 'Inches', 'Kilometres',
-        'Metres', 'Centimetres', 'Millimetres', 'Nanometres', 'Bananas', 'Football Fields', 'Empire State Buildings', 'Giraffes', 'Double Decker Busses', 'Paperclips', 'Eiffel Towers'];
+        'Metres', 'Centimetres', 'Millimetres', 'Nanometres', 'Bananas', 'Football Fields', 'Empire State Buildings', 'Giraffes', 'Double Decker Busses',
+          'Paperclips', 'Eiffel Towers', 'Burj Khalifas'];
         break;
       case 'WEIGHT':
         this.fromUnits = ['Kilograms', 'Pounds', 'Ounces', 'Grams', 'Tonnes', 'Bananas', 'Paperclips', 'Elephants', 'Blue Whales', 'Feathers', 'Bowling Balls', 'Hamsters',
@@ -63,7 +64,11 @@ export class App {
 
     this.http.post('http://localhost:8080/api/convert', request, { responseType: 'text' })
       .subscribe({
-        next: (res) => this.result = `Result: ${parseFloat(res).toFixed(4)}`,
+        next: (res) => {
+          const num = parseFloat(res);
+          const formatted = num.toLocaleString('en-US', { maximumFractionDigits: 4 }).replace(/,/g, ' ');
+          this.result = `Result: ${formatted}`;
+        },
         error: (err) => {
           console.error('Error response:', err);
           const backendMessage =

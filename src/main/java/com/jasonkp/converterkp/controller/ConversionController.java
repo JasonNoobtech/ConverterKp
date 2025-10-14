@@ -25,18 +25,18 @@ public class ConversionController {
         if (request.getTo() == null || request.getTo().trim().isEmpty()) {
             return ResponseEntity.badRequest().body("Missing 'to' unit");
         }
-        
+
         try {
             double result;
             // Choose the correct converter
             if (request.getType() == ConversionType.TEMPERATURE) {
-                TempEnum fromUnit = TempEnum.valueOf(request.getFrom().toUpperCase());
-                TempEnum toUnit = TempEnum.valueOf(request.getTo().toUpperCase());
+                TempEnum fromUnit = TempEnum.fromString(request.getFrom());
+                TempEnum toUnit = TempEnum.fromString(request.getTo());
                 result = fromUnit.convertTo(request.getInputValue(), toUnit);
             } else if (request.getType() == ConversionType.CURRENCY) {
-                CurrencyEnum fromCurrency = CurrencyEnum.fromString(request.getFrom());
-                CurrencyEnum toCurrency = CurrencyEnum.fromString(request.getTo());
-                result = fromCurrency.convertTo(request.getInputValue(), toCurrency);
+                CurrencyEnum fromUnit = CurrencyEnum.fromString(request.getFrom());
+                CurrencyEnum toUnit = CurrencyEnum.fromString(request.getTo());
+                result = fromUnit.convertTo(request.getInputValue(), toUnit);
             } else if (request.getType() == ConversionType.WEIGHT) {
                 WeightEnum fromUnit = WeightEnum.fromString(request.getFrom());
                 WeightEnum toUnit = WeightEnum.fromString(request.getTo());

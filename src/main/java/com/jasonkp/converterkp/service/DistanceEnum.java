@@ -210,6 +210,16 @@ public enum DistanceEnum {
         public double fromMetre(double metre) {
             return metre / 330;
         }
+    },
+    BURJ_KHALIFA {
+        @Override
+        public double toMetre(double value) {
+            return value * 830;
+        }
+        @Override
+        public double fromMetre(double metre) {
+            return metre / 830;
+        }
     };
 
     public abstract double toMetre(double value);
@@ -249,9 +259,10 @@ public enum DistanceEnum {
             case "FOOTBALL_FIELDS": return FOOTBALL_FIELD;
             case "EMPIRE_STATE_BUILDINGS": return EMPIRE_STATE_BUILDING;
             case "GIRAFFES": return GIRAFFE;
-            case "DOUBLE_DECKER_BUSES": return DOUBLE_DECKER_BUS;
+            case "DOUBLE_DECKER_BUSSES": return DOUBLE_DECKER_BUS;
             case "PAPERCLIPS": return PAPERCLIP;
             case "EIFFEL_TOWERS": return EIFFEL_TOWER;
+            case "BURJ_KHALIFAS": return BURJ_KHALIFA;
             default: throw new IllegalArgumentException("Unsupported distance unit: " + distance);
         }
     }

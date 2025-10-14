@@ -1,7 +1,5 @@
 package com.jasonkp.converterkp.model;
 
-import com.jasonkp.converterkp.service.CurrencyEnum;
-
 public enum ConversionType {
     TEMPERATURE,
     WEIGHT,

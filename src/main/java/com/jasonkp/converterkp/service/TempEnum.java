@@ -51,4 +51,13 @@ public enum TempEnum {
         // Convert from the reference unit to the target unit
         return toUnit.fromKelvin(kelvin);
     }
+
+    public static TempEnum fromString(String temp) {
+        switch (temp.toUpperCase()) {
+            case "CELSIUS": return CELSIUS;
+            case "FAHRENHEIT": return FAHRENHEIT;
+            case "KELVIN": return KELVIN;
+            default: throw new IllegalArgumentException("Unsupported temperature unit: " + temp);
+        }
+    }
 }
