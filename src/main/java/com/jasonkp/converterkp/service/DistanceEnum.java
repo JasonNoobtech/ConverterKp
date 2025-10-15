@@ -154,11 +154,21 @@ public enum DistanceEnum {
     FOOTBALL_FIELD {
         @Override
         public double toMetre(double value) {
-            return value * 109.7;
+            return value * 91.4;
         }
         @Override
         public double fromMetre(double metre) {
-            return metre / 109.7;
+            return metre / 91.4;
+        }
+    },
+    RUGBY_FIELD {
+        @Override
+        public double toMetre(double value) {
+            return value * 100;
+        }
+        @Override
+        public double fromMetre(double metre) {
+            return metre / 100;
         }
     },
     EMPIRE_STATE_BUILDING {
@@ -257,6 +267,7 @@ public enum DistanceEnum {
             case "ASTRONOMICAL_UNITS": return ASTRONOMICAL_UNIT;
             case "BANANAS": return BANANA;
             case "FOOTBALL_FIELDS": return FOOTBALL_FIELD;
+            case "RUGBY_FIELDS": return RUGBY_FIELD;
             case "EMPIRE_STATE_BUILDINGS": return EMPIRE_STATE_BUILDING;
             case "GIRAFFES": return GIRAFFE;
             case "DOUBLE_DECKER_BUSSES": return DOUBLE_DECKER_BUS;
