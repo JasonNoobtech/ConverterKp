@@ -83,7 +83,7 @@ export class App {
 
       console.log('Converting words:', words);
 
-      if (words[0] === 'negative' || 'minus') {
+      if (words[0] === 'negative' || words[0] === 'minus') {
         negative = true;
         minus = true;
         words.shift();
@@ -109,7 +109,10 @@ export class App {
 
       console.log(`Final: total=${total}, current=${current}`);
       this.value = total + current > 0 ? total + current : null;
-      this.value = (minus || negative) && this.value !== null ? -this.value : this.value;
+      console.log('Word conversion result:', this.value);
+      console.log('Negative:', negative);
+      console.log('Minus:', minus);
+      this.value = ((minus || negative) && this.value != null) ? -this.value : this.value;
       console.log('Final value:', this.value);
     } else {
       this.value = null;
