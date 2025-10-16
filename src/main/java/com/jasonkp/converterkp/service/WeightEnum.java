@@ -79,6 +79,24 @@ public enum WeightEnum {
         @Override
         public double fromGram(double gram) { return gram / 174; }
     },
+    DCHEESEBURGER {
+        @Override
+        public double toGram(double value) { return value * 165; }
+        @Override
+        public double fromGram(double gram) { return gram / 165; }
+    },
+    ARNOLD {
+        @Override
+        public double toGram(double value) { return value * 107000; }
+        @Override
+        public double fromGram(double gram) { return gram / 107000; }
+    },
+    SNYMAN {
+        @Override
+        public double toGram(double value) { return value * 130000; }
+        @Override
+        public double fromGram(double gram) { return gram / 130000; }
+    },
     SLICE_OF_PIZZA {
         @Override
         public double toGram(double value) { return value * 107; }
@@ -90,22 +108,24 @@ public enum WeightEnum {
     public abstract double fromGram(double gram);
 
     public static WeightEnum fromString(String weight) {
-        String normalized = weight.toUpperCase().replace(" ", "_");
-        switch (normalized) {
-            case "GRAMS": return GRAM;
-            case "KILOGRAMS": return KILOGRAM;
-            case "TONNES": return TONNE;
-            case "POUNDS": return POUND;
-            case "OUNCES": return OUNCE;
-            case "BANANAS": return BANANA;
-            case "PAPERCLIPS": return PAPERCLIP;
-            case "ELEPHANTS": return ELEPHANT;
-            case "BLUE_WHALES": return BLUE_WHALE;
-            case "FEATHERS": return FEATHER;
-            case "BOWLING_BALLS": return BOWLING_BALL;
-            case "HAMSTERS": return HAMSTER;
-            case "SMARTPHONES": return SMARTPHONE;
-            case "SLICES_OF_PIZZA": return SLICE_OF_PIZZA;
+        switch (weight) {
+            case "Grams": return GRAM;
+            case "Kilograms": return KILOGRAM;
+            case "Tonnes": return TONNE;
+            case "Pounds": return POUND;
+            case "Ounces": return OUNCE;
+            case "Bananas": return BANANA;
+            case "Paperclips": return PAPERCLIP;
+            case "Elephants": return ELEPHANT;
+            case "Blue Whales": return BLUE_WHALE;
+            case "Feathers": return FEATHER;
+            case "Double Cheeseburgers": return DCHEESEBURGER;
+            case "Bowling Balls": return BOWLING_BALL;
+            case "Hamsters": return HAMSTER;
+            case "Smartphones": return SMARTPHONE;
+            case "Arnold Schwarzeneggers": return ARNOLD;
+            case "RG Snymans": return SNYMAN;
+            case "Slices of Pizza": return SLICE_OF_PIZZA;
             default: throw new IllegalArgumentException("Unsupported weight unit selected: " + weight);
         }
     }

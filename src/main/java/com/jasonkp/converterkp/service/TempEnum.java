@@ -39,6 +39,15 @@ public enum TempEnum {
     public abstract double toKelvin(double value);
     public abstract double fromKelvin(double kelvin);
 
+    public static TempEnum fromString(String temperature) {
+        switch (temperature) {
+            case "Celsius": return CELSIUS;
+            case "Fahrenheit": return FAHRENHEIT;
+            case "Kelvin": return KELVIN;
+            default: throw new IllegalArgumentException("Unsupported temperature unit: " + temperature);
+        }
+    }
+
     public double convertTo ( double value, TempEnum toUnit){
         if (this == toUnit) {
             return value;
@@ -50,14 +59,5 @@ public enum TempEnum {
         }
         // Convert from the reference unit to the target unit
         return toUnit.fromKelvin(kelvin);
-    }
-
-    public static TempEnum fromString(String temp) {
-        switch (temp.toUpperCase()) {
-            case "CELSIUS": return CELSIUS;
-            case "FAHRENHEIT": return FAHRENHEIT;
-            case "KELVIN": return KELVIN;
-            default: throw new IllegalArgumentException("Unsupported temperature unit: " + temp);
-        }
     }
 }

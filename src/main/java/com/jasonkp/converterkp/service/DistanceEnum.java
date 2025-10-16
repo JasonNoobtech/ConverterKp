@@ -249,31 +249,30 @@ public enum DistanceEnum {
     }
 
     public static DistanceEnum fromString(String distance) {
-        String normalized = distance.toUpperCase().replace(" ", "_");
-        switch (normalized) {
-            case "MILLIMETRES": return MILLIMETRE;
-            case "CENTIMETRES": return CENTIMETRE;
-            case "METRES": return METRE;
-            case "KILOMETRES": return KILOMETRE;
-            case "INCHES": return INCH;
-            case "FOOTS": return FOOT;
-            case "YARDS": return YARD;
-            case "MILES": return MILE;
-            case "PARSECS": return PARSEC;
-            case "FURLONGS": return FURLONG;
-            case "LIGHT_YEARS": return LIGHT_YEAR;
-            case "ANGSTROMS": return ANGSTROM;
-            case "NANOMETRES": return NANOMETRE;
-            case "ASTRONOMICAL_UNITS": return ASTRONOMICAL_UNIT;
-            case "BANANAS": return BANANA;
-            case "FOOTBALL_FIELDS": return FOOTBALL_FIELD;
-            case "RUGBY_FIELDS": return RUGBY_FIELD;
-            case "EMPIRE_STATE_BUILDINGS": return EMPIRE_STATE_BUILDING;
-            case "GIRAFFES": return GIRAFFE;
-            case "DOUBLE_DECKER_BUSSES": return DOUBLE_DECKER_BUS;
-            case "PAPERCLIPS": return PAPERCLIP;
-            case "EIFFEL_TOWERS": return EIFFEL_TOWER;
-            case "BURJ_KHALIFAS": return BURJ_KHALIFA;
+        switch (distance) {
+            case "Millimetres": return MILLIMETRE;
+            case "Centimetres": return CENTIMETRE;
+            case "Metres": return METRE;
+            case "Kilometres": return KILOMETRE;
+            case "Inches": return INCH;
+            case "Feet": return FOOT;
+            case "Yards": return YARD;
+            case "Miles": return MILE;
+            case "Parsecs": return PARSEC;
+            case "Furlongs": return FURLONG;
+            case "Light Years": return LIGHT_YEAR;
+            case "Angstroms": return ANGSTROM;
+            case "Nanometres": return NANOMETRE;
+            case "Astronomical Units": return ASTRONOMICAL_UNIT;
+            case "Bananas": return BANANA;
+            case "Football Fields": return FOOTBALL_FIELD;
+            case "Rugby Fields": return RUGBY_FIELD;
+            case "Empire State Buildings": return EMPIRE_STATE_BUILDING;
+            case "Giraffes": return GIRAFFE;
+            case "Double Decker Busses": return DOUBLE_DECKER_BUS;
+            case "Paperclips": return PAPERCLIP;
+            case "Eiffel Towers": return EIFFEL_TOWER;
+            case "Burj Khalifas": return BURJ_KHALIFA;
             default: throw new IllegalArgumentException("Unsupported distance unit: " + distance);
         }
     }

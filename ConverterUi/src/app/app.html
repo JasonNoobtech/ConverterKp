@@ -1,5 +1,5 @@
 <div class="converter-container">
-  <h1>Cosmically Cool Converter</h1>
+  <h1>Not-so-Simple Converter</h1>
 
   <div class="form-group">
     <label>Conversion Type:</label>
@@ -12,7 +12,7 @@
   <div *ngIf="selectedType">
     <div class="form-group">
       <label>Value:</label>
-      <p class="help-note">Format for text: "two thousand three hundred forty-five"</p>
+      <p class="help-note" *ngIf="valueTxt && isNaN(parseFloat(valueTxt))">Format for text: "two thousand three hundred forty-five"</p>
       <input id="inputType" [(ngModel)]="valueTxt" placeholder="Enter value" />
     </div>
 

@@ -19,7 +19,23 @@ public enum CurrencyEnum {
     SOMALI_SHILLING("SOS"),
     ZIMBABWEAN_DOLLAR("ZWL"),
     ARMENIAN_DRAM("AMD");
-    
+
+    public static CurrencyEnum fromString(String currency) {
+        switch (currency) {
+            case "Dollar": return DOLLAR;
+            case "Euro": return EURO;
+            case "Pound": return POUND;
+            case "Yuan": return YUAN;
+            case "Yen": return YEN;
+            case "Rand": return RAND;
+            case "Zimbabwean Dollar": return ZIMBABWEAN_DOLLAR;
+            case "Armenian Dram": return ARMENIAN_DRAM;
+            case "Somali Shilling": return SOMALI_SHILLING;
+            case "Netherlands Antillean Guilder": return NETHERLANDS_ANTILLEAN_GUILDER;
+            default: throw new IllegalArgumentException("Unsupported currency: " + currency);
+        }
+    }
+
     private final String code;
     private static final String API_KEY = "a0f2ad8ccc0354cb26e18d3b";
     private static Map<String, Double> rates;
@@ -31,11 +47,13 @@ public enum CurrencyEnum {
     private static void fetchRates() {
         try {
             HttpClient client = HttpClient.newHttpClient();
+
             HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/USD"))
-                .build();
-            
+                    .uri(URI.create("https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/USD"))
+                    .build();
+
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
             JsonNode root = new ObjectMapper().readTree(response.body());
             rates = new ObjectMapper().convertValue(root.get("conversion_rates"), Map.class);
         } catch (Exception e) {
@@ -43,31 +61,14 @@ public enum CurrencyEnum {
         }
     }
     
-    public static CurrencyEnum fromString(String currency) {
-        String normalized = currency.toUpperCase().replace(" ", "_");
-        switch (normalized) {
-            case "DOLLAR": return DOLLAR;
-            case "EURO": return EURO;
-            case "POUND": return POUND;
-            case "YUAN": return YUAN;
-            case "YEN": return YEN;
-            case "RAND": return RAND;
-            case "ZIMBABWEAN_DOLLAR": return ZIMBABWEAN_DOLLAR;
-            case "ARMENIAN_DRAM": return ARMENIAN_DRAM;
-            case "SOMALI_SHILLING": return SOMALI_SHILLING;
-            case "NETHERLANDS_ANTILLEAN_GUILDER": return NETHERLANDS_ANTILLEAN_GUILDER;
-            default: throw new IllegalArgumentException("Unsupported currency: " + currency);
-        }
-    }
-    
-    public double convertTo(double value, CurrencyEnum toUnit) {
-        if (this == toUnit) return value;
+    public double convertTo(double inputValue, CurrencyEnum toUnit) {
+        if (this == toUnit) return inputValue;
         
         if (rates == null) fetchRates();
         
         double fromRate = this == DOLLAR ? 1.0 : rates.get(this.code);
         double toRate = toUnit == DOLLAR ? 1.0 : rates.get(toUnit.code);
         
-        return (value / fromRate) * toRate;
+        return (inputValue / fromRate) * toRate;
     }
 }

@@ -28,18 +28,19 @@ export class App {
         this.fromUnits = ['Celsius', 'Fahrenheit', 'Kelvin'];
         break;
       case 'DISTANCE':
-        this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles', 'Yards', 'Feet', 'Inches', 'Kilometres',
-        'Metres', 'Centimetres', 'Millimetres', 'Nanometres', 'Rugby Fields', 'Football Fields', 'Bananas', 'Empire State Buildings', 'Giraffes', 'Double Decker Busses',
-          'Paperclips', 'Eiffel Towers', 'Burj Khalifas'];
+        this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles',
+          'Yards', 'Feet', 'Inches', 'Kilometres', 'Metres', 'Centimetres', 'Millimetres',
+          'Nanometres', 'Rugby Fields', 'Football Fields', 'Bananas', 'Empire State Buildings',
+          'Giraffes', 'Double Decker Busses', 'Paperclips', 'Eiffel Towers', 'Burj Khalifas'];
         break;
       case 'WEIGHT':
-        this.fromUnits = ['Kilograms', 'Pounds', 'Ounces', 'Grams', 'Tonnes', 'Bananas', 'Paperclips', 'Elephants', 'Blue Whales', 'Feathers', 'Bowling Balls', 'Hamsters',
-          'Smartphones', 'Slices of Pizza'];
+        this.fromUnits = ['Kilograms', 'Pounds', 'Ounces', 'Grams', 'Tonnes', 'Bananas', 'Paperclips',
+          'Elephants', 'Blue Whales', 'Feathers', 'Bowling Balls', 'Hamsters', 'RG Snymans', 'Arnold Schwarzeneggers',
+          'Smartphones', 'Slices of Pizza', 'Double Cheeseburgers'];
         break;
       case 'DIGITAL STORAGE':
-        this.fromUnits = ['Bits', 'Kilobits', 'Kibibits', 'Megabits', 'Mebibits', 'Gigabits', 'Gibibits', 'Terabits', 'Tebibits',
-          'Petabits', 'Pebibits', 'Bytes', 'Kilobytes', 'Kibibytes', 'Megabytes', 'Mebibytes', 'Gigabytes', 'Gibibytes', 'Terabytes',
-          'Tebibytes', 'Petabytes', 'Pebibytes'];
+        this.fromUnits = ['Bits', 'Kilobits', 'Megabits', 'Gigabits', 'Terabits', 'Petabits', 'Bytes', 'Kilobytes',
+          'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes'];
         break;
       case 'CURRENCY':
         this.fromUnits = ['Rand', 'Pound', 'Yen', 'Euro', 'Yuan', 'Dollar', 'Netherlands Antillean Guilder',
@@ -57,9 +58,9 @@ export class App {
 
   private wordToNumber: { [key: string]: number } = {
     'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9,
-    'ten': 10, 'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15, 'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19,
-    'twenty': 20, 'thirty': 30, 'forty': 40, 'fifty': 50, 'sixty': 60, 'seventy': 70, 'eighty': 80, 'ninety': 90,
-    'hundred': 100, 'thousand': 1000, 'million': 1000000, 'billion': 1000000000
+    'ten': 10, 'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15, 'sixteen': 16, 'seventeen': 17,
+    'eighteen': 18, 'nineteen': 19, 'twenty': 20, 'thirty': 30, 'forty': 40, 'fifty': 50, 'sixty': 60, 'seventy': 70,
+    'eighty': 80, 'ninety': 90, 'hundred': 100, 'thousand': 1000, 'million': 1000000, 'billion': 1000000000,
   };
 
   typeSelector(): void {
@@ -77,8 +78,16 @@ export class App {
       const words = this.valueTxt.toLowerCase().split(/[\s-]+/);
       let total = 0;
       let current = 0;
+      let negative = false;
+      let minus = false;
 
       console.log('Converting words:', words);
+
+      if (words[0] === 'negative' || 'minus') {
+        negative = true;
+        minus = true;
+        words.shift();
+      }
 
       for (const i of words) {
         if (i === 'and') continue;
@@ -100,6 +109,7 @@ export class App {
 
       console.log(`Final: total=${total}, current=${current}`);
       this.value = total + current > 0 ? total + current : null;
+      this.value = (minus || negative) && this.value !== null ? -this.value : this.value;
       console.log('Final value:', this.value);
     } else {
       this.value = null;
@@ -127,8 +137,8 @@ export class App {
       .subscribe({
         next: (res) => {
           const num = parseFloat(res);
-          const formatted = num.toLocaleString('en-US', { maximumFractionDigits: 4 }).replace(/,/g, ' ');
-          this.result = `Result: ${formatted}`;
+          this.result = 'Result: ' + num.toLocaleString('en-US',
+            { maximumFractionDigits: 4 }).replace(/,/g, ' ');
         },
         error: (err) => {
           console.error('Full error:', err);
@@ -151,4 +161,7 @@ export class App {
     this.fromUnits = [];
     this.toUnits = [];
   }
+
+  protected readonly isNaN = isNaN;
+  protected readonly parseFloat = parseFloat;
 }
