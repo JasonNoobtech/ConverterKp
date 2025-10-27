@@ -38,6 +38,4 @@ public class ConversionHistory {
     protected void onCreate() {
         timestamp = LocalDateTime.now();
     }
-
-
 }
