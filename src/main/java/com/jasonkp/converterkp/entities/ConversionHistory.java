@@ -1,13 +1,10 @@
-package com.jasonkp.converterkp.entity;
+package com.jasonkp.converterkp.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.stereotype.Repository;
-
 import java.time.LocalDateTime;
 
 @Entity
-@Repository
 @Data
 @Table(name = "conversion_history")
 public class ConversionHistory {
@@ -33,6 +30,9 @@ public class ConversionHistory {
 
     @Column(name = "timestamp")
     private LocalDateTime timestamp;
+
+    @Column(name = "deleted")
+    private Boolean deleted;
 
     @PrePersist
     protected void onCreate() {

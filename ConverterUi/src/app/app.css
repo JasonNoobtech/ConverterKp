@@ -1,5 +1,5 @@
-.converter-container {
-  max-width: 400px;
+.converter-container, .history-container {
+  max-width: 800px;
   margin: 50px auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -8,7 +8,6 @@
   text-align: center;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
   font-family: arial, ui-sans-serif;
-
 }
 
 h1 {
@@ -38,15 +37,33 @@ input, select {
 button {
   margin: 10px 5px;
   padding: 10px 20px;
+  width: 35%;
   background: #f81111;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bolder;
+}
+
+.clearButton {
+  margin: 10px 5px;
+  padding: 10px 20px;
+  width: 35%;
+  background: #d1d1d1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bolder;
 }
 
 button:hover {
   background: #c32525;
+}
+
+.clearButton:hover {
+  background: #9b9b9b;
 }
 
 .result {
@@ -58,6 +75,11 @@ button:hover {
   font-weight: bold;
 }
 
+.history {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
 .help-note {
   color: grey;
   font-style: italic;
@@ -65,4 +87,36 @@ button:hover {
   text-align: center;
   margin-bottom: 10px;
   margin-top: 5px;
+}
+
+.history-container {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.history-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.conversion-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conversion-type {
+  font-weight: bold;
+  color: #a10e0e;
+}
+
+.timestamp {
+  font-size: 0.9em;
+  color: #666;
 }

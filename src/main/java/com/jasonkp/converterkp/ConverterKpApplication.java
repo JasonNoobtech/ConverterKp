@@ -10,11 +10,5 @@ public class ConverterKpApplication {
     public static void main(String[] args) {
         SpringApplication.run(ConverterKpApplication.class, args);
     }
-
-    @Bean
-    public ConversionHistoryRepository conversionHistoryRepository() {
-        return new ConversionHistoryRepository();
-    }
-
 }
 

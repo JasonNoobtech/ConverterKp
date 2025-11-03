@@ -1,6 +1,6 @@
-package com.jasonkp.converterkp.service;
+package com.jasonkp.converterkp.enums;
 
-public enum StorageEnum {
+public enum StorageType {
     BIT {
         @Override
         public double toBit(double value) { return value; }
@@ -78,7 +78,7 @@ public enum StorageEnum {
     public abstract double toBit(double value);
     public abstract double fromBit(double bit);
 
-    public static StorageEnum fromString(String storage) {
+    public static StorageType fromString(String storage) {
         switch (storage) {
             case "Bits": return BIT;
             case "Kilobits": return KILOBIT;
@@ -96,7 +96,7 @@ public enum StorageEnum {
         }
     }
 
-    public double convertTo(double value, StorageEnum toUnit) {
+    public double convertTo(double value, StorageType toUnit) {
         if (this == toUnit) return value;
         if (value < 0) throw new IllegalArgumentException("Storage cannot be negative");
         

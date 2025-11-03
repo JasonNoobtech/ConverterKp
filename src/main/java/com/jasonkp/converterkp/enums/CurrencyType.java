@@ -1,4 +1,4 @@
-package com.jasonkp.converterkp.service;
+package com.jasonkp.converterkp.enums;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Map;
 
-public enum CurrencyEnum {
+public enum CurrencyType {
     DOLLAR("USD"),
     EURO("EUR"),
     POUND("GBP"),
@@ -20,7 +20,7 @@ public enum CurrencyEnum {
     ZIMBABWEAN_DOLLAR("ZWL"),
     ARMENIAN_DRAM("AMD");
 
-    public static CurrencyEnum fromString(String currency) {
+    public static CurrencyType fromString(String currency) {
         switch (currency) {
             case "Dollar": return DOLLAR;
             case "Euro": return EURO;
@@ -40,7 +40,7 @@ public enum CurrencyEnum {
     private static final String API_KEY = "a0f2ad8ccc0354cb26e18d3b";
     private static Map<String, Double> rates;
     
-    CurrencyEnum(String code) {
+    CurrencyType(String code) {
         this.code = code;
     }
     
@@ -61,7 +61,7 @@ public enum CurrencyEnum {
         }
     }
     
-    public double convertTo(double inputValue, CurrencyEnum toUnit) {
+    public double convertTo(double inputValue, CurrencyType toUnit) {
         if (this == toUnit) return inputValue;
         
         if (rates == null) fetchRates();
