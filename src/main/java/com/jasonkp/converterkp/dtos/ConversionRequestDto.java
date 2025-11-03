@@ -1,9 +1,10 @@
-package com.jasonkp.converterkp.model;
+package com.jasonkp.converterkp.dtos;
 
+import com.jasonkp.converterkp.enums.ConversionType;
 import lombok.Data;
 
 @Data
-public class ConversionRequest {
+public class ConversionRequestDto {
     private ConversionType type;
     private double inputValue;
     private String to;

@@ -1,6 +1,6 @@
-package com.jasonkp.converterkp.service;
+package com.jasonkp.converterkp.enums;
 
-public enum WeightEnum {
+public enum WeightType {
     GRAM {
         @Override
         public double toGram(double value) { return value; }
@@ -107,7 +107,7 @@ public enum WeightEnum {
     public abstract double toGram(double value);
     public abstract double fromGram(double gram);
 
-    public static WeightEnum fromString(String weight) {
+    public static WeightType fromString(String weight) {
         switch (weight) {
             case "Grams": return GRAM;
             case "Kilograms": return KILOGRAM;
@@ -130,7 +130,7 @@ public enum WeightEnum {
         }
     }
 
-    public double convertTo(double value, WeightEnum toUnit) {
+    public double convertTo(double value, WeightType toUnit) {
         if (this == toUnit) return value;
         if (value < 0) throw new IllegalArgumentException("Weight cannot be negative");
         

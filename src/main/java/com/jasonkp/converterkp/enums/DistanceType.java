@@ -1,6 +1,6 @@
-package com.jasonkp.converterkp.service;
+package com.jasonkp.converterkp.enums;
 
-public enum DistanceEnum {
+public enum DistanceType {
     MILLIMETRE {
         @Override
         public double toMetre(double value) {
@@ -235,7 +235,7 @@ public enum DistanceEnum {
     public abstract double toMetre(double value);
     public abstract double fromMetre(double metre);
 
-     public double convertTo ( double value, DistanceEnum toUnit){
+     public double convertTo ( double value, DistanceType toUnit){
         if (this == toUnit) {
             return value;
         }
@@ -248,7 +248,7 @@ public enum DistanceEnum {
         return toUnit.fromMetre(metre);
     }
 
-    public static DistanceEnum fromString(String distance) {
+    public static DistanceType fromString(String distance) {
         switch (distance) {
             case "Millimetres": return MILLIMETRE;
             case "Centimetres": return CENTIMETRE;

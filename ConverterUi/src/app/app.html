@@ -33,10 +33,34 @@
     </div>
 
     <button (click)="convert()">Convert</button>
-    <button (click)="clear()">Clear</button>
+    <button class="clearButton" (click)="clear()">Clear Entries</button>
   </div>
 
   <div class="result" *ngIf="result">
     {{ result }}
+  </div>
+
+  <div class="history" *ngIf="result">
+    <button (click)="history()">History</button>
+
+  </div>
+</div>
+
+<div class="history-container" *ngIf="showHistory">
+  <h3>Conversion History</h3>
+  <div *ngIf="historyData.length === 0" class="no-history">
+    No conversion history found.
+  </div>
+  <div *ngFor="let item of historyData" class="history-item">
+    <div class="conversion-details">
+      <span class="conversion-type">{{ item.conversionType }}</span>
+      <span class="conversion-formula">
+        {{ item.inputValue }} {{ item.fromUnit }} → {{ item.resultValue }} {{ item.toUnit }}
+      </span>
+      <span class="timestamp">{{ item.timestamp | date:'short' }}</span>
+    </div>
+  </div>
+  <div>
+    <button class="clearButton" (click)="clearHistory()">Clear History</button>
   </div>
 </div>

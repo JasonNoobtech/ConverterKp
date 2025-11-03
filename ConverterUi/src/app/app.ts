@@ -11,7 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./app.css']
 })
 export class App {
-  conversionTypes = ['TEMPERATURE', 'CURRENCY', 'DIGITAL STORAGE', 'DISTANCE', 'WEIGHT'];
+  conversionTypes = ['Temperature', 'Currency', 'Digital Storage', 'Distance', 'Weight'];
   fromUnits: string[] = [];
   toUnits: string[] = [];
 
@@ -24,25 +24,25 @@ export class App {
 
   updateUnits(): void {
     switch (this.selectedType) {
-      case 'TEMPERATURE':
+      case 'Temperature':
         this.fromUnits = ['Celsius', 'Fahrenheit', 'Kelvin'];
         break;
-      case 'DISTANCE':
+      case 'Distance':
         this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles',
           'Yards', 'Feet', 'Inches', 'Kilometres', 'Metres', 'Centimetres', 'Millimetres',
           'Nanometres', 'Rugby Fields', 'Football Fields', 'Bananas', 'Empire State Buildings',
           'Giraffes', 'Double Decker Busses', 'Paperclips', 'Eiffel Towers', 'Burj Khalifas'];
         break;
-      case 'WEIGHT':
+      case 'Weight':
         this.fromUnits = ['Kilograms', 'Pounds', 'Ounces', 'Grams', 'Tonnes', 'Bananas', 'Paperclips',
           'Elephants', 'Blue Whales', 'Feathers', 'Bowling Balls', 'Hamsters', 'RG Snymans', 'Arnold Schwarzeneggers',
           'Smartphones', 'Slices of Pizza', 'Double Cheeseburgers'];
         break;
-      case 'DIGITAL STORAGE':
+      case 'Digital Storage':
         this.fromUnits = ['Bits', 'Kilobits', 'Megabits', 'Gigabits', 'Terabits', 'Petabits', 'Bytes', 'Kilobytes',
           'Megabytes', 'Gigabytes', 'Terabytes', 'Petabytes'];
         break;
-      case 'CURRENCY':
+      case 'Currency':
         this.fromUnits = ['Rand', 'Pound', 'Yen', 'Euro', 'Yuan', 'Dollar', 'Netherlands Antillean Guilder',
           'Armenian Dram', 'Somali Shilling', 'Zimbabwean Dollar'];
         break;
@@ -128,7 +128,7 @@ export class App {
     }
 
     const request = {
-      type: this.selectedType.replace(/\s+/g, '_'),
+      type: this.selectedType.replace(/\s+/g, '_').toUpperCase(),
       from: this.from,
       to: this.to,
       inputValue: Number(this.value)
@@ -163,6 +163,41 @@ export class App {
     this.result = '';
     this.fromUnits = [];
     this.toUnits = [];
+  }
+
+  showHistory = false;
+  historyData: any[] = [];
+
+  history(): void {
+    this.showHistory = !this.showHistory;
+    if (this.showHistory) {
+      this.loadHistory();
+    }
+  }
+
+  loadHistory(): void {
+    this.http.get<any[]>('http://localhost:8080/api/history')
+      .subscribe({
+        next: (data) => {
+          this.historyData = data;
+        },
+        error: (err) => {
+          console.error('Error loading history:', err);
+          this.result = `Error fetching history: ${err.error?.message || 'Unknown error'}`;
+        }
+      });
+  }
+
+  clearHistory(): void {
+    this.http.delete('http://localhost:8080/api/history/clear', { responseType: 'text' })
+      .subscribe({
+        next: () => {
+          this.result = 'History cleared';
+        },
+        error: (err) => {
+          this.result = `Error clearing history: ${err.error?.message || 'Unknown error'}`;
+        }
+      });
   }
 
   protected readonly isNaN = isNaN;

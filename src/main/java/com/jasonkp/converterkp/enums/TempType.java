@@ -1,6 +1,6 @@
-package com.jasonkp.converterkp.service;
+package com.jasonkp.converterkp.enums;
 
-public enum TempEnum {
+public enum TempType {
 
     CELSIUS {
         @Override
@@ -39,7 +39,7 @@ public enum TempEnum {
     public abstract double toKelvin(double value);
     public abstract double fromKelvin(double kelvin);
 
-    public static TempEnum fromString(String temperature) {
+    public static TempType fromString(String temperature) {
         switch (temperature) {
             case "Celsius": return CELSIUS;
             case "Fahrenheit": return FAHRENHEIT;
@@ -48,7 +48,7 @@ public enum TempEnum {
         }
     }
 
-    public double convertTo ( double value, TempEnum toUnit){
+    public double convertTo ( double value, TempType toUnit){
         if (this == toUnit) {
             return value;
         }
