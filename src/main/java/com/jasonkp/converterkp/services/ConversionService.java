@@ -45,7 +45,7 @@ public class ConversionService {
                     StorageType toStorage = StorageType.fromString(request.getTo());
                     result = fromStorage.convertTo(request.getInputValue(), toStorage);
                     break;
-                case PLANETARY_DAYS:
+                case CELESTIAL_BODIES:
                     CelestialType fromPlanet = CelestialType.fromString(request.getFrom());
                     CelestialType toPlanet = CelestialType.fromString(request.getTo());
                     result = fromPlanet.convertTo(request.getInputValue(), toPlanet);

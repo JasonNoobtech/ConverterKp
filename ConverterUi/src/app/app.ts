@@ -13,12 +13,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 export class App {
   conversionTypes = ['Temperature', 'Currency', 'Digital Storage', 'Distance', 'Weight', 'Celestial Bodies'];
-  conversionSubTypes = ['Planets', 'Dwarf Planets', 'Stars', 'Space Crafts', 'Moons'];
+  conversionSubTypes = ['Planets', 'Dwarf Planets', 'Stars', 'Space Crafts', 'Moons', 'Black Holes'];
   fromUnits: string[] = [];
   toUnits: string[] = [];
 
   selectedType = '';
-  selectedSubType = '';
   selectedFromSubType = '';
   selectedToSubType = '';
   from = '';
@@ -39,11 +38,12 @@ export class App {
 
   private getUnitsForSubType(subType: string): string[] {
     switch (subType) {
-      case 'Planets': return ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-      case 'Dwarf Planets': return ['Ceres', 'Pluto', 'Haumea', 'Makemake', 'Eris'];
-      case 'Stars': return ['Sun', 'Sirius', 'Betelgeuse', 'Vega', 'Arcturus', 'Rigel', 'Pollux', 'Antares', 'Fomalhaut', 'Deneb'];
-      case 'Space Crafts': return ['Apollo 11', 'Apollo 13', 'Apollo 17', 'Gemini 12', 'Soyuz 19', 'International Space Station (ISS)', 'Death Star', 'Millennium Falcon', 'Voyager 1', 'Voyager 2'];
-      case 'Moons': return ['Moon', 'Io', 'Europa', 'Ganymede', 'Callisto', 'Titan', 'Triton', 'Charon', 'Rhea', 'Oberon'];
+      case 'Planets': return ['Mercuries', 'Venuses', 'Earths', 'Marses', 'Jupiters', 'Saturns', 'Uranuses', 'Neptunes', 'Plutos'];
+      case 'Dwarf Planets': return ['Cereses', 'Plutos', 'Haumeas', 'Makemakes', 'Erises'];
+      case 'Stars': return ['Uy Scutis', 'Stephenson 2-18s', 'Castors', 'Spicas', 'Reguluses"', 'Procyons',  'Suns', 'Siriuses', 'Betelgeuses', 'Vegas', 'Arcturuses', 'Rigels', 'Polluxes', 'Antareses', 'Fomalhauts', 'Denebs'];
+      case 'Space Crafts': return ['Apollo 11s', 'Apollo 13s', 'Apollo 17s', 'Gemini 12s', 'Soyuz 19s', 'International Space Stations (ISS)', 'Death Stars', 'Millennium Falcons', 'Voyager 1s', 'Voyager 2s'];
+      case 'Moons': return ['Moons', 'Ios', 'Europas', 'Ganymedes', 'Callistos', 'Titans', 'Tritons', 'Charons', 'Rheas', 'Oberons'];
+      case 'Black Holes': return ['Ton 618s', 'Cygnus 1Xs', 'M87 Black Holes', 'Sagittarius As'];
       default: return [];
     }
   }
@@ -54,7 +54,7 @@ export class App {
         this.fromUnits = ['Celsius', 'Fahrenheit', 'Kelvin'];
         break;
       case 'Celestial Bodies':
-        this.fromUnits = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+        this.fromUnits = ['Planets', 'Dwarf Planets', 'Stars', 'Space Crafts', 'Moons', 'Black Holes'];
         break;
       case 'Distance':
         this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles',

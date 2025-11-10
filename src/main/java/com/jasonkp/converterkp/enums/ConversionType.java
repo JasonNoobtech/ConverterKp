@@ -6,6 +6,5 @@ public enum ConversionType {
     DISTANCE,
     CURRENCY,
     DIGITAL_STORAGE,
-    PLANETARY_DAYS;
-
+    CELESTIAL_BODIES;
 }

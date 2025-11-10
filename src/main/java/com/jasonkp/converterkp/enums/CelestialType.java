@@ -178,7 +178,38 @@ public enum CelestialType {
         public double toEarth(double value) { return value * 203; }
         @Override
         public double fromEarth(double earth) { return earth / 203; }
+    }, REGULUS {
+        @Override
+        public double toEarth(double value) { return value * 78.9; }
+        @Override
+        public double fromEarth(double earth) { return earth / 78.9; }
+    }, SPICA {
+        @Override
+        public double toEarth(double value) { return value * 2.36; }
+        @Override
+        public double fromEarth(double earth) { return earth / 2.36; }
+    }, CASTOR {
+        @Override
+        public double toEarth(double value) { return value * 1.08; }
+        @Override
+        public double fromEarth(double earth) { return earth / 1.08; }
+    }, PROCYON {
+        @Override
+        public double toEarth(double value) { return value * 11.4; }
+        @Override
+        public double fromEarth(double earth) { return earth / 11.4; }
+    }, STEPHENSON_2_18 {
+        @Override
+        public double toEarth(double value) { return value * 2150; }
+        @Override
+        public double fromEarth(double earth) { return earth / 2150; }
+    }, UY_SCUTI {
+        @Override
+        public double toEarth(double value) { return value * 1708; }
+        @Override
+        public double fromEarth(double earth) { return earth / 1708; }
     },
+
     // Space-Crafts
     DEATH_STAR {
         @Override
@@ -316,59 +347,89 @@ public enum CelestialType {
         public double toEarth(double value) { return value * 13.46; }
         @Override
         public double fromEarth(double earth) { return earth / 13.46; }
-    }
-    ;
+    },
+// Black Holes
+SAGITTARIUS_A_STAR {
+    @Override
+    public double toEarth(double value) { return value * 5.2e7; }
+    @Override
+    public double fromEarth(double earth) { return earth / 5.2e7; }
+}, M87_BLACK_HOLE {
+    @Override
+    public double toEarth(double value) { return value * 1.2e10; }
+    @Override
+    public double fromEarth(double earth) { return earth / 1.2e10; }
+}, CYGNUS_X1 {
+    @Override
+    public double toEarth(double value) { return value * 60; }
+    @Override
+    public double fromEarth(double earth) { return earth / 60; }
+}, TON_618 {
+    @Override
+    public double toEarth(double value) { return value * 1.3e11; }
+    @Override
+    public double fromEarth(double earth) { return earth / 1.3e11; }
+};
 
     public static CelestialType fromString(String planet) {
         switch (planet) {
-            case "Earth": return EARTH;
-            case "Mercury": return MERCURY;
-            case "Venus": return VENUS;
-            case "Mars": return MARS;
-            case "Jupiter": return JUPITER;
-            case "Saturn": return SATURN;
-            case "Uranus": return URANUS;
-            case "Neptune": return NEPTUNE;
-            case "Pluto": return PLUTO;
-            case "Death Star": return DEATH_STAR;
-            case "ISS": return ISS;
-            case "Ceres": return CERES;
-            case "Haumea": return HAUMEA;
-            case "Makemake": return MAKEMAKE;
-            case "Eris": return ERIS;
-            case "Sun": return SUN;
-            case "Moon": return MOON;
-            case "Sirius": return SIRIUS;
-            case "Apollo 11": return APOLLO_11;
-            case "Millennium Falcon": return MILLENNIUM_FALCON;
-            case "Io": return IO;
-            case "Europa": return EUROPA;
-            case "Ganymede": return GANYMEDE;
-            case "Callisto": return CALLISTO;
-            case "Titan": return TITAN;
+            case "Earths": return EARTH;
+            case "Mercuries": return MERCURY;
+            case "Venuses": return VENUS;
+            case "Marses": return MARS;
+            case "Jupiters": return JUPITER;
+            case "Saturns": return SATURN;
+            case "Uranuses": return URANUS;
+            case "Neptunes": return NEPTUNE;
+            case "Plutos": return PLUTO;
+            case "Cereses": return CERES;
+            case "Haumeas": return HAUMEA;
+            case "Makemakes": return MAKEMAKE;
+            case "Erises": return ERIS;
+            case "Suns": return SUN;
+            case "Siriuses": return SIRIUS;
+            case "Betelgeuses": return BETELGEUSE;
+            case "Vegas": return VEGA;
+            case "Arcturuses": return ARCTURUS;
+            case "Rigels": return RIGEL;
+            case "Polluxes": return POLLUX;
+            case "Antareses": return ANTARES;
+            case "Fomalhauts": return FOMALHAUT;
+            case "Denebs": return DENEB;
+            case "Death Stars": return DEATH_STAR;
+            case "Apollo 11s": return APOLLO_11;
+            case "Apollo 13s": return APOLLO_13;
+            case "Apollo 17s": return APOLLO_17;
+            case "Gemini 12s": return GEMINI_12;
+            case "Soyuz 19s": return SOYUZ_19;
+            case "Millennium Falcons": return MILLENNIUM_FALCON;
+            case "Voyager 1s": return VOYAGER_1;
+            case "Voyager 2s": return VOYAGER_2;
+            case "Moons": return MOON;
+            case "Ios": return IO;
+            case "Europas": return EUROPA;
+            case "Ganymedes": return GANYMEDE;
+            case "Callistos": return CALLISTO;
+            case "Titans": return TITAN;
+            case "Tritons": return TRITON;
+            case "Charons": return CHARON;
+            case "Rheas": return RHEA;
+            case "Oberons": return OBERON;
             case "Enceladus": return ENCELADUS;
-            case "Triton": return TRITON;
-            case "Charon": return CHARON;
-            case "Rhea": return RHEA;
             case "Iapetus": return IAPETUS;
-            case "Dione": return DIONE;
-            case "Phoebe": return PHOEBE;
-            case "Oberon": return OBERON;
-            case "Betelgeuse": return BETELGEUSE;
-            case "Vega": return VEGA;
-            case "Arcturus": return ARCTURUS;
-            case "Rigel": return RIGEL;
-            case "Pollux": return POLLUX;
-            case "Antares": return ANTARES;
-            case "Fomalhaut": return FOMALHAUT;
-            case "Deneb": return DENEB;
-            case "Apollo 13": return APOLLO_13;
-            case "Apollo 17": return APOLLO_17;
-            case "Gemini 12": return GEMINI_12;
-            case "Soyuz 19": return SOYUZ_19;
-            case "International Space Station (ISS)": return ISS;
-            case "Voyager 1": return VOYAGER_1;
-            case "Voyager 2": return VOYAGER_2;
+            case "Diones": return DIONE;
+            case "Phoebes": return PHOEBE;
+            case "Sagittarius As": return SAGITTARIUS_A_STAR;
+            case "M87 Black Holes": return M87_BLACK_HOLE;
+            case "Cygnus X1s": return CYGNUS_X1;
+            case "Ton 618s": return TON_618;
+            case "International Space Stations (ISS)": return ISS;
+            case "Procyons": return PROCYON;
+            case "Reguluses": return REGULUS;
+            case "Spicas": return SPICA;
+            case "Castors": return CASTOR;
+            case "Stephenson 2-18s": return STEPHENSON_2_18;
+            case "Uy Scutis": return UY_SCUTI;
             default: throw new IllegalArgumentException("Unsupported planet selected: " + planet);
         }
     }
