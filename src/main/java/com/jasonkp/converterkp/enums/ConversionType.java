@@ -5,6 +5,7 @@ public enum ConversionType {
     WEIGHT,
     DISTANCE,
     CURRENCY,
-    DIGITAL_STORAGE;
+    DIGITAL_STORAGE,
+    PLANETARY_DAYS;
 
 }

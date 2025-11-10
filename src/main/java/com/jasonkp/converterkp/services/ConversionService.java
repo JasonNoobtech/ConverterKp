@@ -45,6 +45,11 @@ public class ConversionService {
                     StorageType toStorage = StorageType.fromString(request.getTo());
                     result = fromStorage.convertTo(request.getInputValue(), toStorage);
                     break;
+                case PLANETARY_DAYS:
+                    CelestialType fromPlanet = CelestialType.fromString(request.getFrom());
+                    CelestialType toPlanet = CelestialType.fromString(request.getTo());
+                    result = fromPlanet.convertTo(request.getInputValue(), toPlanet);
+                    break;
                 default:
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid conversion type");
             }

@@ -10,22 +10,51 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
+
 export class App {
-  conversionTypes = ['Temperature', 'Currency', 'Digital Storage', 'Distance', 'Weight'];
+  conversionTypes = ['Temperature', 'Currency', 'Digital Storage', 'Distance', 'Weight', 'Celestial Bodies'];
+  conversionSubTypes = ['Planets', 'Dwarf Planets', 'Stars', 'Space Crafts', 'Moons'];
   fromUnits: string[] = [];
   toUnits: string[] = [];
 
   selectedType = '';
+  selectedSubType = '';
+  selectedFromSubType = '';
+  selectedToSubType = '';
   from = '';
   to = '';
   value: number | null = null;
   valueTxt: string = '';
   result = '';
 
+  updateFromUnits(): void {
+    this.fromUnits = this.getUnitsForSubType(this.selectedFromSubType);
+    this.from = '';
+  }
+
+  updateToUnits(): void {
+    this.toUnits = this.getUnitsForSubType(this.selectedToSubType);
+    this.to = '';
+  }
+
+  private getUnitsForSubType(subType: string): string[] {
+    switch (subType) {
+      case 'Planets': return ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
+      case 'Dwarf Planets': return ['Ceres', 'Pluto', 'Haumea', 'Makemake', 'Eris'];
+      case 'Stars': return ['Sun', 'Sirius', 'Betelgeuse', 'Vega', 'Arcturus', 'Rigel', 'Pollux', 'Antares', 'Fomalhaut', 'Deneb'];
+      case 'Space Crafts': return ['Apollo 11', 'Apollo 13', 'Apollo 17', 'Gemini 12', 'Soyuz 19', 'International Space Station (ISS)', 'Death Star', 'Millennium Falcon', 'Voyager 1', 'Voyager 2'];
+      case 'Moons': return ['Moon', 'Io', 'Europa', 'Ganymede', 'Callisto', 'Titan', 'Triton', 'Charon', 'Rhea', 'Oberon'];
+      default: return [];
+    }
+  }
+
   updateUnits(): void {
     switch (this.selectedType) {
       case 'Temperature':
         this.fromUnits = ['Celsius', 'Fahrenheit', 'Kelvin'];
+        break;
+      case 'Celestial Bodies':
+        this.fromUnits = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
         break;
       case 'Distance':
         this.fromUnits = ['Astronomical Units', 'Angstroms', 'Light Years', 'Furlongs', 'Parsecs', 'Miles',
