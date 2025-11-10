@@ -14,56 +14,56 @@ public enum CelestialType {
     }, MERCURY {
         @Override
         public double toEarth(double value) {
-            return value * 0.240846;
+            return value * 0.382;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 0.240846;
+            return earth / 0.382;
         }
     }, VENUS {
         @Override
         public double toEarth(double value) {
-            return value * 0.615197;
+            return value * 0.949;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 0.615197;
+            return earth / 0.949;
         }
     }, MARS {
         @Override
         public double toEarth(double value) {
-            return value * 1.880815;
+            return value * 0.532;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 1.880815;
+            return earth / 0.532;
         }
     }, JUPITER {
         @Override
         public double toEarth(double value) {
-            return value * 11.862615;
+            return value * 11.21;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 11.862615;
+            return earth / 11.21;
         }
     }, SATURN {
         @Override
         public double toEarth(double value) {
-            return value * 29.447498;
+            return value * 9.45;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 29.447498;
+            return earth / 9.45;
         }
     }, URANUS {
         @Override
         public double toEarth(double value) {
-            return value * 84.016846;
+            return value * 4.01;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 84.016846;
+            return earth / 4.01;
         }
     }, NEPTUNE {
         @Override
@@ -106,37 +106,37 @@ public enum CelestialType {
     }, MAKEMAKE {
         @Override
         public double toEarth(double value) {
-            return value * 0.95;
+            return value * 0.113;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 0.95;
+            return earth / 0.113;
         }
     }, ERIS {
         @Override
         public double toEarth(double value) {
-            return value * 1.08;
+            return value * 0.183;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 1.08;
+            return earth / 0.183;
         }
     },
     // Stars
     SUN {
         @Override
         public double toEarth(double value) {
-            return value * 109;
+            return value * 109.1;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 109;
+            return earth / 109.1;
         }
     }, SIRIUS {
         @Override
-        public double toEarth(double value) { return value * 2.64; }
+        public double toEarth(double value) { return value * 1.71; }
         @Override
-        public double fromEarth(double earth) { return earth / 2.64; }
+        public double fromEarth(double earth) { return earth / 1.71; }
     }, BETELGEUSE {
         @Override
         public double toEarth(double value) { return value * 764; }
@@ -203,13 +203,13 @@ public enum CelestialType {
         public double toEarth(double value) { return value * 2150; }
         @Override
         public double fromEarth(double earth) { return earth / 2150; }
-    }, UY_SCUTI {
+    },
+    UY_SCUTI {
         @Override
         public double toEarth(double value) { return value * 1708; }
         @Override
         public double fromEarth(double earth) { return earth / 1708; }
     },
-
     // Space-Crafts
     DEATH_STAR {
         @Override
@@ -275,17 +275,17 @@ public enum CelestialType {
     MOON {
         @Override
         public double toEarth(double value) {
-            return value * 0.273;
+            return value * 0.272;
         }
         @Override
         public double fromEarth(double earth) {
-            return earth / 0.273;
+            return earth / 0.272;
         }
     }, IO {
         @Override
-        public double toEarth(double value) { return value * 1.77; }
+        public double toEarth(double value) { return value * 0.286; }
         @Override
-        public double fromEarth(double earth) { return earth / 1.77; }
+        public double fromEarth(double earth) { return earth / 0.286; }
     }, PHOEBE {
         @Override
         public double toEarth(double value) { return value * 0.55; }
@@ -348,31 +348,31 @@ public enum CelestialType {
         @Override
         public double fromEarth(double earth) { return earth / 13.46; }
     },
-// Black Holes
-SAGITTARIUS_A_STAR {
-    @Override
-    public double toEarth(double value) { return value * 5.2e7; }
-    @Override
-    public double fromEarth(double earth) { return earth / 5.2e7; }
-}, M87_BLACK_HOLE {
-    @Override
-    public double toEarth(double value) { return value * 1.2e10; }
-    @Override
-    public double fromEarth(double earth) { return earth / 1.2e10; }
-}, CYGNUS_X1 {
-    @Override
-    public double toEarth(double value) { return value * 60; }
-    @Override
-    public double fromEarth(double earth) { return earth / 60; }
-}, TON_618 {
-    @Override
-    public double toEarth(double value) { return value * 1.3e11; }
-    @Override
-    public double fromEarth(double earth) { return earth / 1.3e11; }
-};
+    // Black Holes
+    SAGITTARIUS_A_STAR {
+        @Override
+        public double toEarth(double value) { return value * 5.2e7; }
+        @Override
+        public double fromEarth(double earth) { return earth / 5.2e7; }
+    }, M87_BLACK_HOLE {
+        @Override
+        public double toEarth(double value) { return value * 1.2e10; }
+        @Override
+        public double fromEarth(double earth) { return earth / 1.2e10; }
+    }, CYGNUS_X1 {
+        @Override
+        public double toEarth(double value) { return value * 60; }
+        @Override
+        public double fromEarth(double earth) { return earth / 60; }
+    }, TON_618 {
+        @Override
+        public double toEarth(double value) { return value * 1.3e11; }
+        @Override
+        public double fromEarth(double earth) { return earth / 1.3e11; }
+    };
 
-    public static CelestialType fromString(String planet) {
-        switch (planet) {
+    public static CelestialType fromString(String celestialBody) {
+        switch (celestialBody) {
             case "Earths": return EARTH;
             case "Mercuries": return MERCURY;
             case "Venuses": return VENUS;
@@ -430,7 +430,7 @@ SAGITTARIUS_A_STAR {
             case "Castors": return CASTOR;
             case "Stephenson 2-18s": return STEPHENSON_2_18;
             case "Uy Scutis": return UY_SCUTI;
-            default: throw new IllegalArgumentException("Unsupported planet selected: " + planet);
+            default: throw new IllegalArgumentException("Unsupported type selected: " + celestialBody);
         }
     }
 

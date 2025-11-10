@@ -16,7 +16,6 @@ export class App {
   conversionSubTypes = ['Planets', 'Dwarf Planets', 'Stars', 'Space Crafts', 'Moons', 'Black Holes'];
   fromUnits: string[] = [];
   toUnits: string[] = [];
-
   selectedType = '';
   selectedFromSubType = '';
   selectedToSubType = '';
@@ -38,12 +37,18 @@ export class App {
 
   private getUnitsForSubType(subType: string): string[] {
     switch (subType) {
-      case 'Planets': return ['Mercuries', 'Venuses', 'Earths', 'Marses', 'Jupiters', 'Saturns', 'Uranuses', 'Neptunes', 'Plutos'];
-      case 'Dwarf Planets': return ['Cereses', 'Plutos', 'Haumeas', 'Makemakes', 'Erises'];
-      case 'Stars': return ['Uy Scutis', 'Stephenson 2-18s', 'Castors', 'Spicas', 'Reguluses"', 'Procyons',  'Suns', 'Siriuses', 'Betelgeuses', 'Vegas', 'Arcturuses', 'Rigels', 'Polluxes', 'Antareses', 'Fomalhauts', 'Denebs'];
-      case 'Space Crafts': return ['Apollo 11s', 'Apollo 13s', 'Apollo 17s', 'Gemini 12s', 'Soyuz 19s', 'International Space Stations (ISS)', 'Death Stars', 'Millennium Falcons', 'Voyager 1s', 'Voyager 2s'];
-      case 'Moons': return ['Moons', 'Ios', 'Europas', 'Ganymedes', 'Callistos', 'Titans', 'Tritons', 'Charons', 'Rheas', 'Oberons'];
-      case 'Black Holes': return ['Ton 618s', 'Cygnus 1Xs', 'M87 Black Holes', 'Sagittarius As'];
+      case 'Planets':
+        return ['Mercuries', 'Venuses', 'Earths', 'Marses', 'Jupiters', 'Saturns', 'Uranuses', 'Neptunes', 'Plutos'];
+      case 'Dwarf Planets':
+        return ['Cereses', 'Plutos', 'Haumeas', 'Makemakes', 'Erises'];
+      case 'Stars':
+        return ['Uy Scutis', 'Stephenson 2-18s', 'Castors', 'Spicas', 'Reguluses', 'Procyons',  'Suns', 'Siriuses', 'Betelgeuses', 'Vegas', 'Arcturuses', 'Rigels', 'Polluxes', 'Antareses', 'Fomalhauts', 'Denebs'];
+      case 'Space Crafts':
+        return ['Apollo 11s', 'Apollo 13s', 'Apollo 17s', 'Gemini 12s', 'Soyuz 19s', 'International Space Stations (ISS)', 'Death Stars', 'Millennium Falcons', 'Voyager 1s', 'Voyager 2s'];
+      case 'Moons':
+        return ['Moons', 'Ios', 'Europas', 'Ganymedes', 'Callistos', 'Titans', 'Tritons', 'Charons', 'Rheas', 'Oberons'];
+      case 'Black Holes':
+        return ['Ton 618s', 'Cygnus X1s', 'M87 Black Holes', 'Sagittarius As'];
       default: return [];
     }
   }
