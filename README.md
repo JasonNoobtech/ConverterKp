@@ -119,11 +119,3 @@ http://localhost:4200
 
 ---
 
-This version will:
-- Render perfectly on GitHub  
-- Match your CV’s strength (performance + systems thinking)  
-- Feel like a **real production-style project**, not a tutorial  
-
-If you want next, I can help you add:
-- API endpoint examples (very strong signal)  
-- Screenshots section (huge for recruiters)
